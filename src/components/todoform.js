@@ -16,7 +16,7 @@ const TodoForm = ({todos,setTodos,edittodo,seteditTodo}) =>
     //add Todo 
    const handleAddTodo = (myTodo) =>
     {
-        fetch(`http://localhost:8080/add-todo`, {
+        fetch(`https://fullstacktodo-server.herokuapp.com/add-todo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const TodoForm = ({todos,setTodos,edittodo,seteditTodo}) =>
         const newTodos = todos.map((todo)=>
         todo._id === _id ? {_id , title,completed}:todo
         );
-        fetch(`http://localhost:8080/update-todo/${_id}`, {
+        fetch(`https://fullstacktodo-server.herokuapp.com/update-todo/${_id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
