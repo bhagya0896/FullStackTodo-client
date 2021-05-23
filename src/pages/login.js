@@ -31,7 +31,7 @@ export default function Login({handleLogin}) {
       password,
     }
 
-    fetch(`http://localhost:8080/login`, {
+    fetch(`https://fullstacktodo-server.herokuapp.com/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
