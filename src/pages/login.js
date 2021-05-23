@@ -82,12 +82,14 @@ export default function Login({handleLogin}) {
                   <br></br>
                   <p className="text-center text-muted small text-style">Don't have an account? <Link to="/register" className="text-style" style={{color:'black'}}><b>Sign up here!</b></Link></p>
                 </Form>
+                <hr></hr>
+              {error && <span style={{ color: "red" }}>{error}</span>}
               </Card.Text>
             </Card.Body>
           </Card>
         </Col>
       </Row>
-      {error && <span style={{ color: "red" }}>{error}</span>}
+    
     </Container>
       
   );
