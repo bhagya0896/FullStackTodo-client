@@ -23,7 +23,7 @@ function Todos ()
   console.log(token)*/
 
   useEffect(() => {
-    fetch(`http://localhost:8080/todos`, {
+    fetch(`https://fullstacktodo-server.herokuapp.com/todos`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
