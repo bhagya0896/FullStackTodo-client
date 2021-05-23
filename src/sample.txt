@@ -1,0 +1,24 @@
+   {
+     todos.map((todo,index)=>{
+            return(
+                <tr key={index}>
+                <Todo handleDelete={()=>handleDelete(todo._id)} handleUpdate={()=>handleUpdate(todo._id)} key={todo._id} todo={todo}/>
+              </tr>
+            )
+        })
+    }
+
+
+     <table className="table table-hover table-dark">
+     <tbody>
+     {
+     todos.map((todo,index)=>{
+            return(
+                <tr key={index}>
+                <Todo handleDelete={()=>handleDelete(todo._id)} handleUpdate={()=>handleUpdate(todo._id)} key={todo._id} todo={todo}/>
+              </tr>
+            )
+        })
+    }
+    </tbody>
+    </table>
