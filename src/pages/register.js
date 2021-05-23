@@ -69,8 +69,10 @@ export default function Register() {
                 </Button>
                 <br></br>
                 <p className="text-center text-style small text-muted" >Already have an account? <Link to="/" style={{color:"black"}}><b>Login here</b></Link></p>
+               <hr><hr>
+                   {error && <span className="text-style" style={{ color: "red",fontSize:"12px",textAlign:"center" }}>{error}</span>}
               </Form>
-              {error && <span className="text-style" style={{ color: "red",fontSize:"12px",textAlign:"center" }}>{error}</span>}
+             
             </Card.Text>
           </Card.Body>
         </Card>
