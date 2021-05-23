@@ -16,7 +16,7 @@ const TodoItem = ({todo,setTodos,todos,seteditTodo}) =>
   const handleDelete = ({_id}) =>
   {
 
-      fetch(`http://localhost:8080/delete-todo/${_id}`, {
+      fetch(`https://fullstacktodo-server.herokuapp.com/delete-todo/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const TodoItem = ({todo,setTodos,todos,seteditTodo}) =>
     }) ;
     toggledTodo.completed = !toggledTodo.completed
     //console.log(toggleTodos);
-    fetch(`http://localhost:8080/update-todo/${_id}`, {
+    fetch(`https://fullstacktodo-server.herokuapp.com/update-todo/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
