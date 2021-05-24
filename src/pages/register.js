@@ -1,9 +1,6 @@
 import React, { useState,useContext} from "react";
 import { useHistory,Link } from "react-router-dom";
 
-//importing func from login component
-import { handleErrors } from './login';
-
 //react-bootstarp
 import { Button,Container,Form,Row, Col, Card} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,10 +12,13 @@ export default function Register() {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const[message,setMessage] = useState("");
 
   const register = (e) => {
     e.preventDefault();
-    fetch(`https://fullstacktodo-server.herokuapp.com/register`, {
+    setMessage("");
+
+    return fetch(`https://fullstacktodo-server.herokuapp.com/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,15 +28,19 @@ export default function Register() {
         password,
       }),
     })
-      .then(handleErrors)
-      .then(() => {
-        setPassword("");
-        setUsername("")
-        history.push("/");
+      .then((res)=>
+       res.json()
+     )
+      .then((data) => {
+      //console.log(data.message);
+      setMessage(data.message);
+      setPassword("");
+      setUsername("") 
       })
       .catch((error) => {
         setError(error.message);
       });
+     
       
   };
   const history = useHistory();
@@ -47,7 +51,7 @@ export default function Register() {
 
       <Col xs={12} md={4} >
         <Card>
-          <Card.Header className="text-center p-3"> <h6 className="text-style">Register</h6></Card.Header>
+          <Card.Header className="text-center p-3"> <h6 className="text-style" style={{fontSize:"18px"}}>Register</h6></Card.Header>
           
           <Card.Body>
             <Card.Text>
@@ -70,7 +74,11 @@ export default function Register() {
                 <br></br>
                 <p className="text-center text-style small text-muted" >Already have an account? <Link to="/" style={{color:"black"}}><b>Login here</b></Link></p>
                <hr><hr>
-                   {error && <span className="text-style" style={{ color: "red",fontSize:"12px",textAlign:"center" }}>{error}</span>}
+                  <hr></hr>
+                  <div className="text-style">
+                  <p style={{ color: "green",textAlign:"center" }}>{message}</p>
+                  {error && <span  style={{ color: "red",textAlign:"center" }}>{error}</span>}
+                  </div>
               </Form>
              
             </Card.Text>
