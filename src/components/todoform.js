@@ -96,7 +96,7 @@ const TodoForm = ({todos,setTodos,edittodo,seteditTodo}) =>
               </Col>
               <Col xs={12} md={4}>
               <Card className="my-4">
-                <Card.Header className="text-style">  Todos({todos.length}) </Card.Header>
+                <Card.Header className="text-style" style={{fontSize:"15px"}}>  Todos({todos.length}) </Card.Header>
                 <Card.Body>
                   <Card.Text>
                   <form onSubmit={submit}>
