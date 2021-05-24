@@ -7,14 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button,Container,Form,Row, Col, Card} from 'react-bootstrap'
 import '../App.css';
 
-export const handleErrors = async (response) => {
-  if (!response.ok) {
-    const { message } = await response.json();
-    throw Error(message);
-  }
-  
-  return response.json();
-};
 
 export default function Login({handleLogin}) {
   
@@ -22,6 +14,7 @@ export default function Login({handleLogin}) {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const[message,setMessage] = useState("");
 
 
   const login = (e) => {
@@ -41,12 +34,21 @@ export default function Login({handleLogin}) {
         password,
       }),
     })
-      .then(handleErrors)
+      .then((res)=>res.json()
+    )
       .then((data) => {
+        console.log(data.message)
+        setMessage(data.message);
         const {token}=data;
-        console.log(token)
-        handleLogin(user,token)
-        history.push("/todos");
+        if(token)
+        {
+         // console.log(token)
+          handleLogin(user,token);
+          history.push('/todos')
+        }
+        setUsername("");
+        setPassword("");
+      
       })
       .catch((error) => {
         setError(error.message);
@@ -62,7 +64,7 @@ export default function Login({handleLogin}) {
 
         <Col xs={12} md={4} >
           <Card>
-            <Card.Header className="text-center p-3"> <h6 className="text-style">Log In</h6></Card.Header>
+            <Card.Header className="text-center p-3"> <h6 className="text-style" style={{fontSize:"18px"}}>Log In</h6></Card.Header>
             
             <Card.Body>
               <Card.Text>
@@ -83,7 +85,11 @@ export default function Login({handleLogin}) {
                   <p className="text-center text-muted small text-style">Don't have an account? <Link to="/register" className="text-style" style={{color:'black'}}><b>Sign up here!</b></Link></p>
                 </Form>
                 <hr></hr>
-              {error && <span style={{ color: "red" }}>{error}</span>}
+               <hr></hr>
+                  <div className="text-style">
+                  <p style={{ color: "green",textAlign:"center" }}>{message}</p>
+                  {error && <span  style={{ color: "red",textAlign:"center" }}>{error}</span>}
+                  </div>
               </Card.Text>
             </Card.Body>
           </Card>
