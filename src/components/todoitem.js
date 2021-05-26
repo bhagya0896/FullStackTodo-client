@@ -72,8 +72,8 @@ const TodoItem = ({todo,setTodos,todos,seteditTodo}) =>
     <h6  className={todo.completed? "strike" : ""}> <b className="text-style" style={{fontSize:"12px"}}>{todo.title} </b> </h6>
     </Card.Text>
     <Button variant="success"style={{fontSize:"12px"}} className=" text-style float-left mr-3 "  onClick={()=>handleToggle(todo)}>Done</Button>
-    <Button variant="danger" style={{fontSize:"12px"}}className=" text-style float-left mr-2" onClick={()=>handleEdit(todo)}>Edit</Button>
-    <Button variant="info" style={{fontSize:"12px"}}className=" text-style float-right  mr-2"  onClick={()=>handleDelete(todo)}>Delete</Button>
+    <Button variant="info" style={{fontSize:"12px"}}className=" text-style float-left mr-2" onClick={()=>handleEdit(todo)}>Edit</Button>
+    <Button variant="danger" style={{fontSize:"12px"}}className=" text-style float-right  mr-2"  onClick={()=>handleDelete(todo)}>Delete</Button>
   </Card.Body>
 </Card>    
        </>     
